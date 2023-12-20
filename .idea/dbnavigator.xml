@@ -24,6 +24,7 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="db74a3bc-2064-4916-b2a7-468ca84a3bdb" dataset="rem_bot.users" active-filter-id="" />
+    <filter-actions connection-id="db74a3bc-2064-4916-b2a7-468ca84a3bdb" dataset="rem_bot.persons" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />

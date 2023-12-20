@@ -43,6 +43,14 @@ class Database():
         )
         self.connection.commit()
 
+    def db_select_all(self, table_name):
+        result = self.cursor.execute("SELECT * FROM {}".format(table_name))
+        return result.fetchall()
+
+    def delete_person(self, person_name):
+        result = self.cursor.execute("DELETE FROM persons WHERE person_name = {}".format(person_name))
+        return result.fetchall()
+
     def __del__(self):
         self.cursor.close()
         self.connection.close()
