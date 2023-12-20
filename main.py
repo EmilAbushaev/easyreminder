@@ -2,9 +2,13 @@ import os
 import asyncio
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
+
+from state.create import CreateState
 from utils.commands import set_commands
 from aiogram.filters import Command
 from handlers.start import get_start
+from handlers.profile import view_profile
+from handlers.admin.create import create_name, create_date
 from handlers.register import start_register, register_phone, register_name
 from state.register import RegisterState
 
@@ -28,6 +32,10 @@ dp.message.register(get_start, Command(commands='start'))
 dp.message.register(start_register, F.text == 'Зарегистрироваться')
 dp.message.register(register_name, RegisterState.regName)
 dp.message.register(register_phone, RegisterState.regPhone)
+
+dp.message.register(view_profile, F.text == 'Профиль')
+dp.message.register(create_name, F.text == 'Новая запись')
+dp.message.register(create_date, CreateState.person_date)
 
 
 async def start():

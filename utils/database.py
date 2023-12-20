@@ -12,7 +12,13 @@ class Database():
             query = ("CREATE TABLE IF NOT EXISTS users("
                      "id INTEGER PRIMARY KEY,"
                      "user_name TEXT,"
-                     "telegram_id TEXT);")
+                     "user_phone TEXT,"
+                     "telegram_id TEXT);"
+                     "CREATE TABLE IF NOT EXISTS persons("
+                     "id INTEGER PRIMARY KEY,"
+                     "person_name TEXT,"
+                     "person_date TEXT);"
+                     )
             self.cursor.executescript(query)
             self.connection.commit()
 
@@ -23,6 +29,17 @@ class Database():
         self.cursor.execute(
             "INSERT INTO users (user_name, user_phone, telegram_id) VALUES (?,?,?)",
             (user_name, user_phone, telegram_id)
+        )
+        self.connection.commit()
+
+    def select_user_id(self, telegram_id):
+        users = self.cursor.execute("SELECT * FROM users WHERE telegram_id = ?", (telegram_id,))
+        return users.fetchone()
+
+    def add_person(self, person_name, person_date):
+        self.cursor.execute(
+            "INSERT INTO persons (person_name, person_date) VALUES (?,?)",
+            (person_name, person_date)
         )
         self.connection.commit()
 

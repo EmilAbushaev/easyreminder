@@ -1,7 +1,7 @@
 from aiogram import Bot
 from aiogram.types import Message
 from keyboards.register_kb import register_keyboard
-# from keyboards.profile_kb import profile_kb
+from keyboards.menu_kb import profile_kb
 from utils.database import Database
 import os
 
@@ -13,7 +13,7 @@ async def get_start(message: Message, bot: Bot):
         await bot.send_message(
             message.from_user.id,
             f'Здравствуйте, {users[1]}',
-            # reply_markup=profile_kb
+            reply_markup=profile_kb
         )
     else:
         await bot.send_message(
